@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #6e4a4a;
+            color: #fff;
+        }
+
+        .container {
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    width: 900px;
+    min-height: 600px; /* Alteração aqui para min-height */
+    margin: auto;
+    padding: 10px;
+    margin-top: 20px;
+    position: relative;
+    background-color: #38444d;
+    color: #fff;
+}
+        .titulo {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 20px;
+            margin-left: 10px;
+        }
+
+        .campo {
+            position: relative;
+            margin-bottom: 20px;
+            font-size: 17px;
+            text-align: left;
+            margin-left: 0px;
+        }
+
+        .campo input {
+            width: 60%;
+            padding: 8px;
+            border: 1px solid #fcfdfd;
+            background-color: #55687a;
+            color: #fff;
+        }
+
+        .botaoIncluir,
+        .botaoLimpar,
+        .botaoListar,
+        .botaoExcluir {
+            background-color: #2ecc71;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #tipoClienteLabel {
+            font-size: 17px;
+            position: absolute;
+            top: 40px;
+            right: 30px;
+            text-align: right;
+            margin-right: -17px;
+        }
+
+        #tipoClienteSelect {
+            font-size: 17px;
+            position: relative;
+            right: -780px;
+            top: 70px;
+            text-align: left;
+        }
+
+        #listaClientes {
+            text-align: left;
+            margin-top: 20px;
+            padding: 20px; /* Adiciona algum espaço ao redor da lista */
+           
+            border-radius: 5px; /* Adiciona bordas arredondadas à lista */
+        }
+
+        #listaClientes ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #listaClientes li {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #55687a;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            word-wrap: break-word; /* Para que os textos longos quebrem corretamente */
+        }
+    </style>
+</head>
+<body>
+    <div class="titulo">Cadastro do Cliente</div>
+   
+    <div class="container">
+        <div class="campo">
+            <label for="tipoClienteSelect" id="tipoClienteLabel">Tipo de Cliente:</label>
+            <select id="tipoClienteSelect">
+                <option value="Bronze">Bronze</option>
+                <option value="Prata">Prata</option>
+                <option value="Ouro">Ouro</option>
+                <option value="Platina">Platina</option>
+                <option value="Diamante">Diamante</option>
+            </select>
+        </div>
+
+        <div class="campo">Nome : <input type="text" id="nome" required></div>
+        
+        <div class="campo">Sobrenome : <input type="text" id="sobrenome" required></div>
+        
+        <div class="campo">Data de Nascimento : <input type="date" id="dataNascimento" required></div>
+        
+        <div class="campo">CEP : <input type="text" id="Cep" required></div>
+        
+        <div class="campo">Cidade : <input type="text" id="Cidade" pattern="\d{5}-\d{3}" required onblur="preencherEndereco()"></div>
+        
+        <div class="campo">Endereço : <input type="text" id="endereco" required></div>
+
+        <button class="botaoIncluir" onclick="incluirCliente()">Incluir</button>
+        <button class="botaoLimpar" onclick="limparCampos()">Limpar</button>
+        <button class="botaoListar" onclick="listarClientes()">Listar</button>
+        <button class="botaoExcluir" onclick="excluirClientes()">Excluir Todos</button>
+
+        <!-- Espaço para exibir a lista de clientes -->
+        <div id="listaClientes"></div>
+    </div>
+
+    <script>
+        // O restante do código JavaScript permanece inalterado
+        var clientes = JSON.parse(localStorage.getItem('clientes')) || [];
+        var tiposClientes = JSON.parse(localStorage.getItem('tiposClientes')) || [];
+
+        function incluirCliente() {
+            var tipoCliente = document.getElementById('tipoClienteSelect').value;
+            var nome = document.getElementById('nome').value;
+            var sobrenome = document.getElementById('sobrenome').value;
+            var dataNascimento = document.getElementById('dataNascimento').value;
+            var cidade = document.getElementById('Cidade').value;
+            var cep = document.getElementById('Cep').value;
+            var endereco = document.getElementById('endereco').value;
+
+            if (!tipoCliente || !nome || !sobrenome || !dataNascimento || !cidade || !cep || !endereco) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+
+            var cliente = {
+                tipoCliente: tipoCliente,
+                nome: nome,
+                sobrenome: sobrenome,
+                dataNascimento: dataNascimento,
+                cidade: cidade,
+                cep: cep,
+                endereco: endereco
+            };
+
+            clientes.push(cliente);
+            tiposClientes.push(tipoCliente);
+
+            localStorage.setItem('clientes', JSON.stringify(clientes));
+            localStorage.setItem('tiposClientes', JSON.stringify(Array.from(new Set(tiposClientes))));
+
+            console.log('Clientes:', clientes);
+
+            limparCampos();
+            listarClientes();
+        }
+
+        function limparCampos() {
+            document.getElementById('tipoClienteSelect').selectedIndex = 0;
+            document.getElementById('nome').value = '';
+            document.getElementById('sobrenome').value = '';
+            document.getElementById('dataNascimento').value = '';
+            document.getElementById('Cidade').value = '';
+            document.getElementById('Cep').value = '';
+            document.getElementById('endereco').value = '';
+
+            // Limpar a lista de clientes
+            document.getElementById('listaClientes').innerHTML = '';
+        }
+
+        function listarClientes() {
+            var listaClientesHtml = '<h2>Lista de Clientes</h2>';
+
+            if (clientes.length === 0) {
+                listaClientesHtml += '<p>Não há clientes para listar.</p>';
+            } else {
+                listaClientesHtml += '<ul>';
+                for (var i = 0; i < clientes.length; i++) {
+                    var cliente = clientes[i];
+                    var tipoCliente = tiposClientes[i];
+
+                    listaClientesHtml += '<li>';
+                    listaClientesHtml += '<strong>Tipo de Cliente:</strong> ' + tipoCliente + '<br>';
+                    listaClientesHtml += '<strong>Nome:</strong> ' + cliente.nome + '<br>';
+                    listaClientesHtml += '<strong>Sobrenome:</strong> ' + cliente.sobrenome + '<br>';
+                    listaClientesHtml += '<strong>Data de Nascimento:</strong> ' + cliente.dataNascimento + '<br>';
+                    listaClientesHtml += '<strong>Cidade:</strong> ' + cliente.cidade + '<br>';
+                    listaClientesHtml += '<strong>CEP:</strong> ' + cliente.cep + '<br>';
+                    listaClientesHtml += '<strong>Endereço:</strong> ' + cliente.endereco;
+                    listaClientesHtml += '</li>';
+                }
+                listaClientesHtml += '</ul>';
+            }
+
+            document.getElementById('listaClientes').innerHTML = listaClientesHtml;
+        }
+
+        function preencherEndereco() {
+            var cep = document.getElementById('Cep').value;
+
+            if (cep.length !== 8 || isNaN(cep)) {
+                alert('Por favor, insira um CEP válido.');
+                return;
+            }
+
+            var url = 'https://viacep.com.br/ws/' + cep + '/json/';
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na requisição.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.erro) {
+                        alert('CEP não encontrado.');
+                    } else {
+                        document.getElementById('endereco').value = data.logradouro || '';
+                        document.getElementById('Cidade').value = data.localidade || '';
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro na requisição:', error.message);
+                    alert('Erro ao obter dados do endereço.');
+                });
+        }
+        function excluirClientes() {
+            // Limpar os arrays de clientes e tiposClientes
+            clientes = [];
+            tiposClientes = [];
+
+            // Atualizar o localStorage
+            localStorage.setItem('clientes', JSON.stringify(clientes));
+            localStorage.setItem('tiposClientes', JSON.stringify(tiposClientes));
+
+            // Limpar a lista de clientes
+            document.getElementById('listaClientes').innerHTML = '<p>Não há clientes para listar.</p>';
+
+        // Ao carregar a página, não chamar listarClientes diretamente
+        }
+
+    </script>
+</body>
+</html>

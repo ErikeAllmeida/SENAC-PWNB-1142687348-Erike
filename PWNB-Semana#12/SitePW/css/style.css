@@ -1,0 +1,96 @@
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #6e4a4a;
+    color: #fff;
+}
+
+.container {
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    width: 900px;
+    min-height: 600px;
+    margin: auto;
+    padding: 10px;
+    margin-top: 20px;
+    position: relative;
+    background-color: #38444d;
+    color: #fff;
+}
+
+.titulo {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+.campo {
+    position: relative;
+    margin-bottom: 20px;
+    font-size: 17px;
+    text-align: left;
+    margin-left: 0px;
+}
+
+.campo input {
+    width: 60%;
+    padding: 8px;
+    border: 1px solid #fcfdfd;
+    background-color: #55687a;
+    color: #fff;
+}
+
+.botaoIncluir,
+.botaoLimpar,
+.botaoListar,
+.botaoExcluir {
+    background-color: #2ecc71;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#tipoClienteLabel {
+    font-size: 17px;
+    position: absolute;
+    top: 40px;
+    right: 30px;
+    text-align: right;
+    margin-right: -17px;
+}
+
+#tipoClienteSelect {
+    font-size: 17px;
+    position: relative;
+    right: -780px;
+    top: 70px;
+    text-align: left;
+}
+
+#listaClientes {
+    text-align: left;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+#listaClientes ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#listaClientes li {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px 0;
+    background-color: #55687a;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    word-wrap: break-word;
+}
