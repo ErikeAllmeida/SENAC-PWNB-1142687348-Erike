@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="cadastro.css">
+    <script src="telaCadastro.js"></script>
+
+    <title>Formulário de cadastro</title>
+
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="form-imagem">
+            <h1> Venha conhecer nosso Restaurante!!</h1>
+        </div>
+
+        <div class="form">
+            <form action="#" id="form-register">
+                <div class="form-header">
+                    <div class="title">
+                        <h1>Inscreva-se</h1>
+                    </div>
+                </div>
+
+                <div class="input-grupo">
+                    <div class="input-box">
+                        <label for="nomeCliente">Nome Completo</label>
+                        <input id="name" type="text" name="name" oninput="validationName()" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="email">E-mail</label>
+                        <input id="email" type="email" name="email" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="cpf">CPF</label>
+                        <input id="cpf" type="text" name="cpf" oninput="mask_cpf()" autocomplete="off" maxlength="14"
+                            required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="telefone">Telefone</label>
+                        <input id="phone" type="tel" name="telefone" oninput="mask_phone()" autocomplete="off"
+                            maxlength="15" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="senhaUsuario">Senha</label>
+                        <input id="password" type="password" name="password" oninput="validationPassword()" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="confirmacaosenha">Repita sua senha</label>
+                        <input id="confirmPassword" type="password" name="confirmacaosenha"
+                            oninput="validationPasswordd()" required>
+                    </div>
+
+                </div>
+
+                <div class="login-botao">
+                    <input type="submit" value="Cadastre-se">
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

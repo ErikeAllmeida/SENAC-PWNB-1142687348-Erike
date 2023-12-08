@@ -1,0 +1,182 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.banner {
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom, #264437, #2a5440, #2e6448, #34744f, #3b8556, #3c8253, #3c7f50, #3d7c4d, #356641, #2c5136, #243c2a, #1c291f);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffff;
+    padding-bottom: 20px;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: 420px 420px;
+}
+
+.card-img {
+    background: url("Imagens/three.jpg") center/cover no-repeat;
+}
+
+.banner h2 {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.card-content {
+    background: #fff;
+    height: 370px;
+    width: 520px;
+}
+
+.card-content h3 {
+    text-align: center;
+    color: #000;
+    padding: 25px 0 10px 0;
+    font-size: 26px;
+    font-weight: 500;
+}
+
+.form-row {
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+}
+
+form select,
+form input {
+    display: block;
+    width: 100%;
+    margin: 15px 12px;
+    padding: 5px;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #eee;
+    font-weight: 300;
+}
+
+#manage {
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+
+#reservation-list {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    position: relative;
+    bottom: 30px;
+
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+
+}
+
+#reservation-list li {
+    display: flex;
+    position: relative;
+    top: 20px;
+    flex-direction: column;
+    border: solid 3px #000;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    padding: 8px;
+    color: #000;
+    background-color: #f1f1f1;
+
+}
+
+
+.button {
+    display: none;
+    position: relative;
+    left: 10%;
+    margin-top: 10px;
+}
+
+
+
+.alter {
+    background-color: #438849;
+    font-size: 20px;
+    border: solid 2px;
+    border-radius: 5px;
+    padding: 6px;
+}
+
+.delete {
+    background-color: #aa2121;
+    font-size: 20px;
+    border: solid 2px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+form input[type=text],
+form input[type=number],
+form input[type=date],
+form input[type=time],
+form input::placeholder,
+select {
+    color: #5f5e5e;
+}
+
+form input[type=submit] {
+    color: #000;
+    background: rgb(209, 7, 175);
+    padding: 12px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+
+
+}
+
+form input[type=submit]:hover {
+    opacity: 0.9;
+}
+
+#reservations {
+    display: grid;
+    grid-template-columns: 293px 293px 293px;
+    grid-gap: 15px 15px;
+}
+
+@media (max-width: 992px) {
+    .card-container {
+        grid-template-columns: 100%;
+    }
+
+    .card-img {
+        height: 330px;
+    }
+
+    #reservations {
+        grid-template-columns: 100%;
+        grid-gap: 20px;
+        padding: 0;
+        width: 420px;
+    }
+
+    #administerReservations {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    #reservations {
+        padding: 0;
+    }
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de reserva</title>
+</head>
+<link rel="stylesheet" href="reserva.css">
+<script src="reserva.js"></script>
+
+<body>
+
+    <section class="banner">
+        <h2>RESERVE SUA MESA</h2>
+        <div class="card-container">
+            <div class="card-img">
+
+            </div>
+            <div class="card-content">
+                <h3>RESERVA</h3>
+                <form id="reserve-table">
+                    <div class="form-row">
+
+                        <input type="date" id="date" name="date">
+
+                        <input type="time" id="time" name="time" min="10:00" max="24:00" required>
+                    </div>
+
+                    <div class="form-row">
+                        <input type="text" placeholder="Nome Completo" id="name" name="name">
+                        <input type="text" placeholder="Telefone" id="phone" name="phone">
+                    </div>
+
+                    <div class="form-row">
+                        <input type="number" placeholder="Quantas Pessoas" id="people" name="people" min="1">
+                        <input type="number" placeholder="Vagas Estacionamento" id="parking" name="parking" min="0"
+                            max="2">
+                    </div>
+                    <div class="form-row">
+                        <input type="submit" value="Reservar mesa">
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <h2 id="manage">GERENCIAR RESERVAS</h2>
+
+        <div class="list-Reservations">
+            <ul id="reservation-list"></ul>
+            <div class="button">
+                <button id="btnAlter" class="alter">Alterar</button>
+                <button id="btnDelete" class="delete">Excluir</button>
+            </div>
+        </div>
+
+    </section>
+
+</body>
+
+</html>
